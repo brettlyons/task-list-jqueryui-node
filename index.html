@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Task Listing</title>
+    <link rel="stylesheet" href="jquery-ui-libs/jquery-ui.min.css">
+    <script src="jquery-ui-libs/external/jquery/jquery.js"></script>
+    <script src="jquery-ui-libs/jquery-ui.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <style>
+      h1 { padding: .2em; margin: 0; }
+      #tasks { float:left; width: 50%; margin-right: 2em; margin-left: 25%; }
+      #dayplan { width: 50%; float: left; margin-top: 1em; margin-left: 25%;}
+      /* style the list to maximize the droppable hitarea */
+      #dayplan ol { margin: 0; padding: 1em 0 1em 3em; }
+    </style>
+    <script>
+      $(function() {
+        $( "#task-list" ).accordion();
+        $( "#task-list li" ).draggable({
+            appendTo: "body",
+            helper: "clone"
+        });
+        $( "#dayplan ol" ).droppable({
+          activeClass: "ui-state-default",
+          hoverClass: "ui-state-hover",
+          accept: ":not(.ui-sortable-helper)",
+          drop: function( event, ui ) {
+            $( this ).find( ".placeholder" ).remove();
+            $( "<li></li>" ).text( ui.draggable.text() ).appendTo( this );
+          }
+        }).sortable({
+          items: "li:not(.placeholder)",
+            sort: function() {
+              // gets added unintentionally by droppable interacting with sortable
+              // using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
+            $( this ).removeClass( "ui-state-default" );
+            }
+        });
+      });
+    </script>
+  </head>
+  <body>
+
+    <div id="tasks">
+      <h1 class="ui-widget-header">Tasks</h1>
+      <div id="task-list">
+        <h2><a href="#">Health</a></h2>
+        <div>
+          <ul>
+            <li>Work out</li>
+            <li>Meditate</li>
+            <li>Eat well</li>
+            <li>Drink tea</li>
+          </ul>
+        </div>
+        <h2><a href="#">Wealth</a></h2>
+        <div>
+          <ul>
+            <li>Crush code</li>
+            <li>Pay debts</li>
+            <li>Drink tea</li>
+          </ul>
+        </div>
+        <h2><a href="#">Soul</a></h2>
+        <div>
+          <ul>
+            <li>Drink tea</li>
+            <li>Work out</li>
+            <li>Meditate</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="dayplan">
+      <h1 class="ui-widget-header">Daily Plan</h1>
+      <div class="ui-widget-content">
+        <ol>
+          <li class="placeholder">Add your items here</li>
+        </ol>
+      </div>
+    </div>
+
+  </body>
+</html>
