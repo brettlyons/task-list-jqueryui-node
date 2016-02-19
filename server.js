@@ -6,6 +6,7 @@ var staticServer = require('node-static');
 //var db = require('monk')('localhost/tasksdb');
 //var tasks = db.get('tasks');
 
+var port = process.env.PORT || 3000;
 var file = new(staticServer.Server)();
 
 var server = http.createServer(function (req, res) {
@@ -29,4 +30,4 @@ var server = http.createServer(function (req, res) {
   // }
 });
 
-server.listen(Number(process.argv[2]));
+server.listen(port);
