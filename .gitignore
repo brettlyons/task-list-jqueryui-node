@@ -1,6 +1,6 @@
 # ignore the jquery directory, no need to post that to github.
-jquery-ui-libs
-jquery-ui-1.11.4.sourcemintchoc.zip
-
+# jquery-ui-libs
+# jquery-ui-1.11.4.sourcemintchoc.zip
+# oooorrrrrr don't ignore it cuz I *do* need it . . .
 #ignore node_modules directory
 node_modules
