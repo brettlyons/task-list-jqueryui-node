@@ -29,4 +29,4 @@ var server = http.createServer(function (req, res) {
   // }
 });
 
-server.listen(80); // ooohhhh, evil hardcoding . . . 
+server.listen(Number(process.argv[2]));
